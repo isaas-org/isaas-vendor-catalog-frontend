@@ -42,3 +42,7 @@ npm run build
 ```
 
 CI (`.github/workflows/test.yml`) runs both on every PR and every push to `feature/**`.
+
+## Known issues
+
+`npm audit` reports 5 high-severity findings, all from `braces` (GHSA-vfj7-8cjw-p6xm), reached through `eslint-config-next` -> `@next/eslint-plugin-next` -> `fast-glob@3.3.1` (pinned by Next.js). No patched `braces` exists yet, and the suggested `npm audit fix --force` downgrades `eslint-config-next` to 14.x, which doesn't match Next 16. It is lint tooling only: `npm audit --omit=dev` is clean. Recheck on each Next.js upgrade.
