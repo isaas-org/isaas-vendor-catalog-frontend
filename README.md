@@ -39,9 +39,11 @@ src/lib/backend.ts           server-side client for the backend API
 ```bash
 npm run lint
 npm run build
+npx playwright install chromium   # once
+npm run test:e2e                  # Playwright, against a production build
 ```
 
-CI (`.github/workflows/test.yml`) runs both on every PR and every push to `feature/**`.
+There is no lockfile, so `npm install` always resolves dependencies fresh. CI (`.github/workflows/test.yml`) runs lint and build in one job and the Playwright tests in another, on every PR and every push to `feature/**`. End-to-end tests live in `e2e/`.
 
 ## Known issues
 
